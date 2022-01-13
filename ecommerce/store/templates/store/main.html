@@ -2,76 +2,23 @@
 {% load static %}
 <html>
   <head>
-    <title>Naveen's Site</title>
-
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
-    />
-
+    <title>Naveen Store</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
-
-    <script type="text/javascript">
-      var user = "{{request.user}}";
-
-      function getToken(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== "") {
-          var cookies = document.cookie.split(";");
-          for (var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === name + "=") {
-              cookieValue = decodeURIComponent(
-                cookie.substring(name.length + 1)
-              );
-              break;
-            }
-          }
-        }
-        return cookieValue;
-      }
-      var csrftoken = getToken("csrftoken");
-
-      function getCookie(name) {
-        // Split cookie string and get all individual name=value pairs in an array
-        var cookieArr = document.cookie.split(";");
-
-        // Loop through the array elements
-        for (var i = 0; i < cookieArr.length; i++) {
-          var cookiePair = cookieArr[i].split("=");
-
-          /* Removing whitespace at the beginning of the cookie name
-		        and compare it with the given string */
-          if (name == cookiePair[0].trim()) {
-            // Decode the cookie value and return
-            return decodeURIComponent(cookiePair[1]);
-          }
-        }
-
-        // Return null if not found
-        return null;
-      }
-      var cart = JSON.parse(getCookie("cart"));
-
-      if (cart == undefined) {
-        cart = {};
-        console.log("Cart Created!", cart);
-        document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
-      }
-      console.log("Cart:", cart);
-    </script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+    />
   </head>
+
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'store' %}">Naveen's Site</a>
+      <a class="navbar-brand" href="{% url 'store' %}">Naveen Store</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -98,15 +45,11 @@
           <a href="{% url 'cart' %}">
             <img id="cart-icon" src="{% static 'images/cart.png' %}" />
           </a>
-          <p id="cart-total">{{cartItems}}</p>
+          <p id="cart-total">0</p>
         </div>
-      </div>
+       </div>
     </nav>
-
-    <div class="container">
-      <br />
-      {% block content %} {% endblock content %}
-    </div>
+    <div class="container"><br />{% block content%} {% endblock content %}</div>
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -125,7 +68,5 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-
-    <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
   </body>
 </html>
