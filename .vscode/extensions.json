@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "batisteo.vscode-django",
+        "formulahendry.auto-complete-tag",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "sidthesloth.html5-boilerplate"
+    ]
+}
