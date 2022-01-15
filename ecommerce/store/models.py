@@ -1,12 +1,3 @@
-from ast import Or
-import email
-import imp
-from itertools import product
-from platform import mac_ver
-from re import T
-from statistics import mode
-from tkinter.tix import Tree
-from turtle import back
 from django.db import models
 from django.contrib.auth.models import User
 
