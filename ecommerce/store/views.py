@@ -15,8 +15,9 @@ def store(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_item
     else:
+        #create empty cart for non-login users
         items = []
-        order = {'get_cart_total':0, 'get_cart_item': 0}
+        order = {'get_cart_total':0, 'get_cart_item': 0,'shipping':False}
         cartItems = order['get_cart_item']
 
 
@@ -32,8 +33,9 @@ def cart(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_item
     else:
+        #create empty cart for non-login users
         items = []
-        order = {'get_cart_total':0, 'get_cart_item': 0}
+        order = {'get_cart_total':0, 'get_cart_item': 0,'shipping':False}
         cartItems = order['get_cart_item']
 
     context = {'items':items, 'order':order,'cartItems':cartItems}
@@ -46,8 +48,9 @@ def checkout(request):
         items = order.orderitem_set.all()
         cartItems = order.get_cart_item
     else:
+        #create empty cart for non-login users
         items = []
-        order = {'get_cart_total':0, 'get_cart_item': 0}
+        order = {'get_cart_total':0, 'get_cart_item': 0, 'shipping':False}
         cartItems = order['get_cart_item']
 
     context = {'items':items, 'order':order,'cartItems':cartItems}
@@ -67,8 +70,7 @@ def updateItem(request):
     if action=='add':
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
-    
+        orderItem.quantity = (orderItem.quantity - 1) 
     orderItem.save()
 
     if orderItem.quantity <=0:
